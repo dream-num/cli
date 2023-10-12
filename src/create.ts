@@ -23,7 +23,8 @@ const questions = [{
 function createProject(fromDir: string, toDir: string, projectName: string): void {
   const data: ITemplateData = {
     GITIGNORE: '.gitignore',
-    PROJECT_NAME: projectName
+    PROJECT_NAME: projectName,
+    PROJECT_UPPER_NAME: covertToPascalCase(projectName),
   }
 
   fs.copySync(fromDir, toDir, { overwrite: true })
@@ -42,4 +43,13 @@ export async function create (path: string) {
   } catch (error: any) {
     console.error(error)
   }
+}
+
+
+function covertToPascalCase(str: string) {
+  return str
+      .replace(/\b\w/g, (match) => {
+          return match.toUpperCase();
+      })
+      .replace(/-/g, '');
 }
