@@ -1,6 +1,6 @@
 {
     "name": "@univerjs/<%= PROJECT_NAME %>",
     "dependencies": {
-        "@univerjs/core": "workspace:^0.0.1",
+        "@univerjs/core": "workspace:*"
     }
 }
