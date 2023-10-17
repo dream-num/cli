@@ -45,11 +45,10 @@ export async function create (path: string) {
   }
 }
 
-
-function covertToPascalCase(str: string) {
+function covertToPascalCase (str: string) {
   return str
-      .replace(/\b\w/g, (match) => {
-          return match.toUpperCase();
-      })
-      .replace(/-/g, '');
+    .replace(/\b\w/g, (match) => {
+      return match.toUpperCase()
+    })
+    .replace(/-/g, '')
 }
