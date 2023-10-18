@@ -1,12 +1,27 @@
 # Create a Univer plugin from a template
 
-## Development
-dev
+## Usage
+
 ```sh
-npm i
+npm create @univerjs/cli init <project-name>
+```
+
+## Development
+
+```sh
+pnpm i
+
 npm run dev
 ```
+
 test, create `filter` plugin
+
 ```sh
-npm run start create ./packages/sheets-plugin-filter
+npm run start init ./packages/sheets-plugin-filter
+```
+
+## Release
+
+```sh
+npm run release
 ```

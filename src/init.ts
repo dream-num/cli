@@ -20,7 +20,7 @@ const questions = [{
   required: true
 }]
 
-function createProject(fromDir: string, toDir: string, projectName: string): void {
+function initProject(fromDir: string, toDir: string, projectName: string): void {
   const data: ITemplateData = {
     GITIGNORE: '.gitignore',
     PROJECT_NAME: projectName,
@@ -32,14 +32,14 @@ function createProject(fromDir: string, toDir: string, projectName: string): voi
   traverseDirectory(toDir, data)
 }
 
-export async function create (path: string) {
+export async function init (path: string) {
   try {
     const { template, projectName } = await inquirer.prompt(questions)
 
     const fromDir = resolve(__dirname, `../templates/${template}`)
     const toDir = resolve(path)  
 
-    createProject(fromDir, toDir, projectName)
+    initProject(fromDir, toDir, projectName)
   } catch (error: any) {
     console.error(error)
   }
