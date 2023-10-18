@@ -1,4 +1,4 @@
-src
+/src
 .release-it.json
 esbuild.config.mjs
 tsconfig.json
