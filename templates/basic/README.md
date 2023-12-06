@@ -1,8 +1,11 @@
 # @univerjs/<%= PROJECT_NAME %>
 
+[![npm version](https://img.shields.io/npm/v/@univerjs/<%= PROJECT_NAME %>)](https://npmjs.org/packages/@univerjs/<%= PROJECT_NAME %>)
+[![license](https://img.shields.io/npm/l/@univerjs/<%= PROJECT_NAME %>)](https://img.shields.io/npm/l/@univerjs/<%= PROJECT_NAME %>)
+
 ## Introduction
 
-Univer <%= PROJECT_NAME %>
+> TODO: Introduction
 
 ## Usage
 
@@ -11,7 +14,3 @@ Univer <%= PROJECT_NAME %>
 ```shell
 npm i @univerjs/<%= PROJECT_NAME %>
 ```
-
-### API
-
-Check [Univer](https://github.com/dream-num/univer/)
