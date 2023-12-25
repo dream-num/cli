@@ -3,7 +3,11 @@
 ## Usage
 
 ```sh
+# npm
 npm create @univerjs/cli init <project-name>
+
+# pnpm
+pnpm create @univerjs/cli init <project-name>
 ```
 
 ## Development
