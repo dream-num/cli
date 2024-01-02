@@ -32,7 +32,8 @@ function initProject(fromDir: string, toDir: string, projectName: string): void 
   traverseDirectory(toDir, data)
 }
 
-export async function init (path: string) {
+export async function init (path: string, options: any) {
+  console.log(options)
   try {
     const { template, projectName } = await inquirer.prompt(questions)
 

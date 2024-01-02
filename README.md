@@ -1,13 +1,15 @@
 # Create a Univer plugin from a template
 
+See [Univer docs](https://univer.work/en-us/guides/extend/write-a-plugin/) for more information.
+
 ## Usage
 
 ```sh
 # npm
-npm create @univerjs/cli init <project-name>
+npm create @univerjs/cli@latest init <path>
 
 # pnpm
-pnpm create @univerjs/cli init <project-name>
+pnpm create @univerjs/cli@latest init <path>
 ```
 
 ## Development
