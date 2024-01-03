@@ -2,7 +2,6 @@ import { resolve } from 'node:path'
 import fs from 'fs-extra'
 import { input, confirm, select } from '@inquirer/prompts'
 import chalk from 'chalk'
-import { __dirname } from './utils/path'
 import { createProject } from './create'
 import { CliModeType, ICliOptions } from './types'
 
