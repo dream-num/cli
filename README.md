@@ -1,15 +1,21 @@
-# Create a Univer plugin from a template
+# @univerjs/create-cli
+
+[![npm version](https://img.shields.io/npm/v/@univerjs/create-cli)](https://npmjs.org/package/@univerjs/create-cli)
+
+> Create a Univer plugin from a template.
 
 See [Univer docs](https://univer.work/en-us/guides/extend/write-a-plugin/) for more information.
 
 ## Usage
 
+Run the following command and follow the prompts to create a plugin:
+
 ```sh
 # npm
-npm create @univerjs/cli@latest init <path>
+npm create @univerjs/cli@latest
 
 # pnpm
-pnpm create @univerjs/cli@latest init <path>
+pnpm create @univerjs/cli@latest
 ```
 
 ## Development
@@ -17,17 +23,31 @@ pnpm create @univerjs/cli@latest init <path>
 ```sh
 pnpm i
 
-npm run dev
+pnpm dev
 ```
 
 test, create `filter` plugin
 
 ```sh
-npm run start init ./packages/sheets-plugin-filter
+node dist/index.js
 ```
 
-## Release
+---
 
-```sh
-npm run release
-```
+<details>
+  <summary>Internal use only</summary>
+
+  > This section is for internal use only. You don't need to read it.
+
+  ## Usage
+
+  ```sh
+  pnpm create @univerjs/cli@latest --mode univer
+  ```
+  
+  ## Release & Publish
+
+  ```sh
+  npm run release
+  ```
+</details>
