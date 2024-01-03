@@ -9,9 +9,8 @@
     "noImplicitOverride": true,
     "noUnusedLocals": true,
     "esModuleInterop": true,
-    "useUnknownInCatchVariables": false,
-		"jsx": "react"
+    "useUnknownInCatchVariables": false
   },
   "include": ["src"],
-  "exclude": ["node_modules", "templates"]
+  "exclude": ["node_modules", "./templates"]
 }
