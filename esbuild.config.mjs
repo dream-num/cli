@@ -16,7 +16,7 @@ const config = {
   entryPoints: {
     index: './src/main.ts'
   },
-  format: 'esm',
+  format: 'cjs',
   outdir: './dist'
 }
 
