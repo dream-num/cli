@@ -6,6 +6,7 @@ import { colors } from 'consola/utils'
 import { CliModeType, ICliOptions, ITemplateData } from '../types'
 import { traverseDirectory } from '../utils/convert'
 import { __dirname } from '../utils/path'
+import { t } from '../i18n'
 
 function covertToPascalCase (str: string) {
   return str
@@ -41,21 +42,21 @@ export async function create (options: ICliOptions) {
   try {
     const answer = {
       path: await input({
-        message: '📝 Please input a path to create a new plugin',
+        message: t('create.choices.path'),
         default: process.cwd()
       }),
       template: await select({
-        message: '📦 Which template would you like to use?',
+        message: t('create.choices.template'),
         choices: templates.map((template) => ({
           value: template,
           required: true
         }))
       }),
       projectName: await input({
-        message: '📌 Please input a new plugin name',
+        message: t('create.choices.projectName'),
         validate: (input) => {
           if (!input.trim()) {
-            return 'The plugin name cannot be empty'
+            return t('create.choices.projectName.validate')
           }
 
           return true
@@ -66,14 +67,10 @@ export async function create (options: ICliOptions) {
     const { path, template, projectName } = answer
   
     await confirm({
-      message: `🤔 Please confirm your choice:\n` +
-        `The target path: ${colors.cyan(path)}\n` +
-        `The template you choose is ${colors.cyan(template)}.\n` +
-        `The plugin name is ${colors.cyan(projectName)}.\n` + 
-        'Continue to create a new plugin?',
+      message: t('create.choices.confirm', colors.cyan(path), colors.cyan(template), colors.cyan(projectName)),
       default: true
     })
-    
+
     const fromDir = resolve(templatesPath, template)
 
     // If the path already exists, throw an error
@@ -102,13 +99,13 @@ export async function create (options: ICliOptions) {
       fs.writeJSONSync(tsConfigPath, tsConfig, { spaces: 4 })
     }
 
-    consola.success('🎉 Successfully created a new plugin!')
+    consola.success(t('create.success'))
   } catch (error) {
     // If the user force closes the prompt, exit the process
     if (error.message.startsWith('User force closed the prompt')) {
-      consola.info('Goodbye 👋')
+      consola.info(t('error.exit'))
     } else {
-      console.error(error)
+      consola.error(error)
     }
   }
 }

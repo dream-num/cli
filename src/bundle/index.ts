@@ -1,9 +1,10 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import fs from 'fs-extra'
+import { input } from '@inquirer/prompts'
 import consola from 'consola'
 import { ICliOptions } from '../types'
-import { input } from '@inquirer/prompts'
+import { t } from '../i18n'
 
 const pakcages = [{
   name: '@univerjs/core',
@@ -34,7 +35,7 @@ const pakcages = [{
 
 export async function bundle (options: ICliOptions) {
   const outputPath = await input({
-    message: '📝 Please enter the output path',
+    message: t('bundle.choices.path'),
     default: process.cwd()
   })
 
@@ -58,9 +59,9 @@ export async function bundle (options: ICliOptions) {
 
   if (outputCss) {
     fs.writeFileSync(`${outputPath}/univer.umd.css`, outputCss)
-    consola.success('🎉 CSS bundle generated successfully')
+    consola.success(t('bundle.success.css'))
   }
 
   fs.writeFileSync(`${outputPath}/univer.umd.js`, outputJs)
-  consola.success('🎉 JS bundle generated successfully')
+  consola.success(t('bundle.success.js'))
 }

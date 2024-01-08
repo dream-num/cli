@@ -36,12 +36,21 @@ export const localeInstance = new Locale()
  * @example
  * t('cli.feature.message')
  */
-export function t (key: string) {
+export function t (key: string, ...args: string[]) {
   const locale = localeInstance.getLang()
 
+  let result = ''
   if (locales[locale] && locales[locale][key]) {
-    return locales[locale][key]
+    result = locales[locale][key]
+  } else {
+    result = locales[DEFAULT_LOCALE][key]
   }
 
-  return locales[DEFAULT_LOCALE][key]
+  if (args.length) {
+    args.forEach((arg, index) => {
+      result = result.replace(`{${index}}`, arg)
+    })
+  }
+
+  return result
 }
