@@ -1,6 +1,6 @@
 import { select } from '@inquirer/prompts'
 import { consola } from 'consola'
-import { box } from 'consola/utils'
+import { t, localeInstance } from './i18n'
 import { create } from './create'
 import { bundle } from './bundle'
 import { CliModeType, ICliOptions } from './types'
@@ -13,20 +13,23 @@ export async function cli (options: ICliOptions) {
     }
 
     const mode = options.mode ?? CliModeType.NORMAL
+    if (options.locale) {
+      localeInstance.setLang(options.locale)
+    }
 
     const feature = await select({
-      message: box('👋 Hey, what do you want to do today?'),
+      message: t('cli.feature.message'),
       choices: [{
-        name: '🔌 Create a new univer plugin',
+        name: t('cli.feature.choices.create'),
         value: create
       }, {
-        name: '📦 Build your own UMD bundle',
+        name: t('cli.feature.choices.bundle'),
         value: bundle
       }]
     })
 
     feature({ mode })
   } catch (error) {
-    consola.info('Goodbye 👋')
+    consola.info(t('error.exit'))
   }
 }

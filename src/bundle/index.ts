@@ -1,8 +1,9 @@
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import fs from 'fs-extra'
 import consola from 'consola'
-import { ICliOptions } from "../types";
-import { input } from '@inquirer/prompts';
+import { ICliOptions } from '../types'
+import { input } from '@inquirer/prompts'
 
 const pakcages = [{
   name: '@univerjs/core',
@@ -40,19 +41,20 @@ export async function bundle (options: ICliOptions) {
   let outputJs = ''
   let outputCss = ''
 
-  pakcages.forEach((item) => {
+  for (const item of pakcages) {
     const { name, style } = item
 
-    const modulePath = require.resolve(name);
+    const modulePath = fileURLToPath(await import.meta.resolve(name))
 
     if (style) {
       const cssPath = path.resolve(modulePath, '../../index.css')
+      fs.readFileSync(cssPath, 'utf-8')
       outputCss += fs.readFileSync(cssPath, 'utf-8')
     }
 
     const jsPath = path.resolve(modulePath, '../../umd/index.js')
     outputJs += fs.readFileSync(jsPath, 'utf-8')
-  })
+  }
 
   if (outputCss) {
     fs.writeFileSync(`${outputPath}/univer.umd.css`, outputCss)

@@ -5,6 +5,7 @@ export enum CliModeType {
 
 export interface ICliOptions {
   mode?: CliModeType
+  locale?: string
 }
 
 export interface ITemplateData {

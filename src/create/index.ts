@@ -5,6 +5,7 @@ import { consola } from 'consola'
 import { colors } from 'consola/utils'
 import { CliModeType, ICliOptions, ITemplateData } from '../types'
 import { traverseDirectory } from '../utils/convert'
+import { __dirname } from '../utils/path'
 
 function covertToPascalCase (str: string) {
   return str
@@ -25,7 +26,6 @@ export function createProject(fromDir: string, toDir: string, projectName: strin
 
   traverseDirectory(toDir, data)
 }
-
 
 export async function create (options: ICliOptions) {
   // If the mode is not one of the ModeType values, throw an error

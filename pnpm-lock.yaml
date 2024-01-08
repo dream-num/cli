@@ -65,6 +65,9 @@ dependencies:
   fs-extra:
     specifier: ^11.2.0
     version: 11.2.0
+  os-locale:
+    specifier: ^6.0.2
+    version: 6.0.2
 
 devDependencies:
   '@types/ejs':
@@ -3323,6 +3326,11 @@ packages:
     engines: {node: '>= 0.10'}
     dev: true
 
+  /invert-kv@3.0.1:
+    resolution: {integrity: sha512-CYdFeFexxhv/Bcny+Q0BfOV+ltRlJcd4BBZBYFX/O0u4npJrgZtIcjokegtiSMAvlMTJ+Koq0GBCc//3bueQxw==}
+    engines: {node: '>=8'}
+    dev: false
+
   /ip@1.1.8:
     resolution: {integrity: sha512-PuExPYUiu6qMBQb4l06ecm6T6ujzhmh+MeJcW9wa89PoAz5pvd4zPgN5WJV104mb6S2T1AwNIAaB70JNrLQWhg==}
     dev: true
@@ -4159,6 +4167,13 @@ packages:
       package-json: 8.1.1
     dev: true
 
+  /lcid@3.1.1:
+    resolution: {integrity: sha512-M6T051+5QCGLBQb8id3hdvIW8+zeFV2FyBGFS9IEK5H9Wt4MueD4bW1eWikpHgZp+5xR3l5c8pZUkQsIA0BFZg==}
+    engines: {node: '>=8'}
+    dependencies:
+      invert-kv: 3.0.1
+    dev: false
+
   /leven@3.1.0:
     resolution: {integrity: sha512-qsda+H8jTaUaN/x5vzW2rzc+8Rw4TAQ/4KjB46IwK5VH+IlVeeeje/EoZRpiXvIqjFgK84QffqPztGI3VBLG1A==}
     engines: {node: '>=6'}
@@ -4526,6 +4541,13 @@ packages:
       string-width: 6.1.0
       strip-ansi: 7.1.0
     dev: true
+
+  /os-locale@6.0.2:
+    resolution: {integrity: sha512-qIb8bzRqaN/vVqEYZ7lTAg6PonskO7xOmM7OClD28F6eFa4s5XGe4bGpHUHMoCHbNNuR0pDYFeSLiW5bnjWXIA==}
+    engines: {node: '>=12.20'}
+    dependencies:
+      lcid: 3.1.1
+    dev: false
 
   /os-name@5.1.0:
     resolution: {integrity: sha512-YEIoAnM6zFmzw3PQ201gCVCIWbXNyKObGlVvpAVvraAeOHnlYVKFssbA/riRX5R40WA6kKrZ7Dr7dWzO3nKSeQ==}

@@ -2,6 +2,7 @@
   "name": "@univerjs/create-cli",
   "version": "0.3.1",
   "description": "Command-line tool for quickly creating univer plugins.",
+  "type": "module",
   "main": "index.js",
   "author": "DreamNum <developer@univer.ai>",
   "license": "MIT",
@@ -38,7 +39,8 @@
     "commander": "^11.1.0",
     "consola": "^3.2.3",
     "ejs": "^3.1.9",
-    "fs-extra": "^11.2.0"
+    "fs-extra": "^11.2.0",
+    "os-locale": "^6.0.2"
   },
   "devDependencies": {
     "@types/ejs": "^3.1.5",
