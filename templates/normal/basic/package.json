@@ -43,20 +43,20 @@
         "build": "tsc && vite build"
     },
     "dependencies": {
-        "@univerjs/core": "workspace:*",
+        "@univerjs/core": "*",
         "@wendellhu/redi": "^0.12.13",
         "rxjs": "^7.8.1"
     },
     "devDependencies": {
-        "@vitest/coverage-istanbul": "^1.1.1",
+        "@vitest/coverage-istanbul": "^1.1.3",
         "typescript": "^5.3.3",
-        "vite": "^5.0.10",
+        "vite": "^5.0.11",
         "vite-plugin-dts": "^3.7.0",
         "vite-plugin-externals": "^0.6.2",
-        "vitest": "^1.1.1"
+        "vitest": "^1.1.3"
     },
     "peerDependencies": {
-        "@univerjs/core": "workspace:*",
+        "@univerjs/core": "*",
         "@wendellhu/redi": ">=0.12.13",
         "rxjs": ">=7.0.0"
     }
