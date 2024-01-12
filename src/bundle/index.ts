@@ -1,5 +1,5 @@
 import path from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { createRequire } from 'node:module';
 import fs from 'fs-extra'
 import { input, confirm } from '@inquirer/prompts'
 import consola from 'consola'
@@ -7,7 +7,9 @@ import { ICliOptions } from '../types'
 import { t } from '../i18n'
 
 async function getPackagePath (name: string) {
-  return fileURLToPath(await import.meta.resolve(name))
+  const require = createRequire(import.meta.url)
+
+  return require.resolve(name)
 }
 
 const pakcages = [{
