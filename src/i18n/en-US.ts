@@ -16,6 +16,8 @@ export default {
   'create.success': '🎉 Successfully created a new plugin',
 
   'bundle.choices.path': '📝 Please enter the output path',
+  'bundle.choices.react': '🏗️ Already used React in your project?',
+  'bundle.choices.rxjs': '🚛 Already used RxJS in your project?',
   'bundle.success.css': '🎉 CSS bundle generated successfully',
   'bundle.success.js': '🎉 JS bundle generated successfully',
 

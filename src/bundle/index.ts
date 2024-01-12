@@ -1,10 +1,14 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import fs from 'fs-extra'
-import { input } from '@inquirer/prompts'
+import { input, confirm } from '@inquirer/prompts'
 import consola from 'consola'
 import { ICliOptions } from '../types'
 import { t } from '../i18n'
+
+async function getPackagePath (name: string) {
+  return fileURLToPath(await import.meta.resolve(name))
+}
 
 const pakcages = [{
   name: '@univerjs/core',
@@ -33,35 +37,76 @@ const pakcages = [{
   style: true,
 }]
 
+const reactUMD = path.resolve(await getPackagePath('react'), '../umd/react.production.min.js')
+const reactDOMUMD = path.resolve(await getPackagePath('react-dom'), '../umd/react-dom.production.min.js')
+const rxjsUMD = path.resolve(await getPackagePath('rxjs'), '../../bundles/rxjs.umd.min.js')
+const clsxUMD = path.resolve(await getPackagePath('clsx'), '../clsx.min.js')
+const rediUMD = path.resolve(await getPackagePath('@wendellhu/redi'), '../../dist/redi.js')
+const rediReactBindingsUMD = path.resolve(await getPackagePath('@wendellhu/redi'), '../../dist/react-bindings.js')
+
 export async function bundle (options: ICliOptions) {
-  const outputPath = await input({
-    message: t('bundle.choices.path'),
-    default: process.cwd()
-  })
-
-  let outputJs = ''
-  let outputCss = ''
-
-  for (const item of pakcages) {
-    const { name, style } = item
-
-    const modulePath = fileURLToPath(await import.meta.resolve(name))
-
-    if (style) {
-      const cssPath = path.resolve(modulePath, '../../index.css')
-      fs.readFileSync(cssPath, 'utf-8')
-      outputCss += fs.readFileSync(cssPath, 'utf-8')
+  try {
+    const answer = {
+      outputPath: await input({
+        message: t('bundle.choices.path'),
+        default: process.cwd()
+      }),
+      react: await confirm({
+        message: t('bundle.choices.react'),
+        default: false
+      }),
+      rxjs: await confirm({
+        message: t('bundle.choices.rxjs'),
+        default: false
+      })
     }
 
-    const jsPath = path.resolve(modulePath, '../../umd/index.js')
-    outputJs += fs.readFileSync(jsPath, 'utf-8')
-  }
+    const { outputPath, react, rxjs } = answer
 
-  if (outputCss) {
-    fs.writeFileSync(`${outputPath}/univer.umd.css`, outputCss)
-    consola.success(t('bundle.success.css'))
-  }
+    let outputJs = ''
+    let outputCss = ''
 
-  fs.writeFileSync(`${outputPath}/univer.umd.js`, outputJs)
-  consola.success(t('bundle.success.js'))
+    if (!react) {
+      outputJs += fs.readFileSync(reactUMD, 'utf-8')
+      outputJs += fs.readFileSync(reactDOMUMD, 'utf-8')
+    }
+
+    if (!rxjs) {
+      outputJs += fs.readFileSync(rxjsUMD, 'utf-8')
+    }
+
+    outputJs += fs.readFileSync(clsxUMD, 'utf-8')
+    outputJs += fs.readFileSync(rediUMD, 'utf-8')
+    outputJs += fs.readFileSync(rediReactBindingsUMD, 'utf-8')
+
+    for (const item of pakcages) {
+      const { name, style } = item
+
+      const modulePath = await getPackagePath(name)
+
+      if (style) {
+        const cssPath = path.resolve(modulePath, '../../index.css')
+        fs.readFileSync(cssPath, 'utf-8')
+        outputCss += fs.readFileSync(cssPath, 'utf-8')
+      }
+
+      const jsPath = path.resolve(modulePath, '../../umd/index.js')
+      outputJs += fs.readFileSync(jsPath, 'utf-8')
+    }
+
+    if (outputCss) {
+      fs.writeFileSync(`${outputPath}/univer.umd.css`, outputCss)
+      consola.success(t('bundle.success.css'))
+    }
+
+    fs.writeFileSync(`${outputPath}/univer.umd.js`, outputJs)
+    consola.success(t('bundle.success.js'))
+  } catch (error) {
+    // If the user force closes the prompt, exit the process
+    if (error.message.startsWith('User force closed the prompt')) {
+      consola.info(t('error.exit'))
+    } else {
+      consola.error(error)
+    }
+  }
 }

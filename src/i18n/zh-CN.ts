@@ -15,6 +15,8 @@ export default {
   'create.success': '🎉 成功创建一个新插件',
 
   'bundle.choices.path': '📝 请输入输出路径',
+  'bundle.choices.react': '🏗️ 你的项目中已经使用了 React?',
+  'bundle.choices.rxjs': '🚛 你的项目中已经使用了 RxJS?',
   'bundle.success.css': '🎉 CSS 包生成成功',
   'bundle.success.js': '🎉 JS 包生成成功',
 
