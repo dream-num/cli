@@ -2,7 +2,12 @@
 
 [![npm version](https://img.shields.io/npm/v/@univerjs/create-cli)](https://npmjs.org/package/@univerjs/create-cli)
 
-> Create a Univer plugin from a template.
+> Command-line tool for quickly playing with [Univer](https://github.com/dream-num/univer).
+
+## Features
+
+- **Plugin Quickstart:** Swiftly create a new Univer plugin with ease.
+- **Custom UMD Package:** Tailor your own UMD package with customizable options
 
 See [Univer docs](https://univer.work/en-us/guides/extend/write-a-plugin/) for more information.
 
@@ -17,6 +22,16 @@ npm create @univerjs/cli@latest
 # pnpm
 pnpm create @univerjs/cli@latest
 ```
+
+### Options
+
+#### **-l, --locale \<locale\>**
+
+Special locale. Available options are `zh-CN` and `en-US`.
+
+#### **-h, --help**
+
+Display help for command.
 
 ## Development
 
@@ -36,6 +51,8 @@ node dist/index.js
 
 <details>
   <summary>Internal use only</summary>
+
+  <br />
 
   > This section is for internal use only. You don't need to read it.
 
