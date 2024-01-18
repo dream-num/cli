@@ -1,4 +1,6 @@
-/src
-.release-it.json
-esbuild.config.mjs
+./src
 ./tsconfig.json
+./.release-it.json
+./esbuild.config.mjs
+./__tests__
+./coverage
