@@ -96,6 +96,8 @@ export async function bundle (options: ICliOptions) {
       outputJs += fs.readFileSync(jsPath, 'utf-8')
     }
 
+    fs.ensureDirSync(outputPath)
+
     if (outputCss) {
       fs.writeFileSync(`${outputPath}/univer.umd.css`, outputCss)
       consola.success(t('bundle.success.css'))
