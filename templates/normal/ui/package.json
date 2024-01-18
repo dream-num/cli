@@ -44,10 +44,10 @@
         "build": "tsc && vite build"
     },
     "dependencies": {
-        "@univerjs/core": "workspace:*",
-        "@univerjs/design": "workspace:*",
+        "@univerjs/core": "*",
+        "@univerjs/design": "*",
         "@univerjs/icons": "^0.1.26",
-        "@univerjs/ui": "workspace:*",
+        "@univerjs/ui": "*",
         "@wendellhu/redi": "^0.12.13",
         "clsx": "^2.1.0",
         "react": "^18.2.0",
