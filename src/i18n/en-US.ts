@@ -11,7 +11,7 @@ export default {
     `The target path: {0}\n` +
     `The template you choose is {1}\n` +
     `The plugin name is {2}\n` +
-    'Continue to create a new plugin?',
+    'Confirm?',
 
   'create.success': '🎉 Successfully created a new plugin',
 
