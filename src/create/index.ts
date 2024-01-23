@@ -80,25 +80,6 @@ export async function create (options: ICliOptions) {
   
     createProject(fromDir, path, projectName)
 
-    // When the mode is univer, check if the tsconfig.json exists
-    if (mode === CliModeType.UNIVER) {
-      const tsConfigPath = resolve(path, '../../tsconfig.json')
-
-      if (!fs.existsSync(tsConfigPath)) {
-        throw new Error(`Cannot find tsconfig.json in ${colors.yellow(path)}, please check it`)
-      }
-
-      const tsConfig = fs.readJSONSync(tsConfigPath)
-
-      const packagesPath = fs.readdirSync(resolve(path, '../'))
-
-      tsConfig.references = packagesPath.map((packagePath) => ({
-        path: `./packages/${packagePath}`
-      }))
-
-      fs.writeJSONSync(tsConfigPath, tsConfig, { spaces: 4 })
-    }
-
     consola.success(t('create.success'))
   } catch (error) {
     // If the user force closes the prompt, exit the process
