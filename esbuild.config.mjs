@@ -1,3 +1,5 @@
+import process from 'node:process'
+
 import esbuild from 'esbuild'
 import cleanPlugin from 'esbuild-plugin-clean'
 import minimist from 'minimist'
@@ -10,21 +12,22 @@ const config = {
   packages: 'external',
   plugins: [
     cleanPlugin({
-      patterns: ['./dist']
-    })
+      patterns: ['./dist'],
+    }),
   ],
   entryPoints: {
-    index: './src/main.ts'
+    index: './src/main.ts',
   },
   format: 'esm',
-  outdir: './dist'
+  outdir: './dist',
 }
 
 if (watch) {
   const ctx = await esbuild.context(config)
   await ctx.watch()
 
-  console.log('Watching for changes...');
+  // eslint-disable-next-line no-console
+  console.log('Watching for changes...')
 } else {
   await esbuild.build(config)
 }

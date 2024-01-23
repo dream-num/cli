@@ -7,11 +7,11 @@ export default {
   'create.choices.template': '📦 Which template would you like to use?',
   'create.choices.projectName': '📌 Please input a new plugin name',
   'create.choices.projectName.validate': 'The plugin name cannot be empty',
-  'create.choices.confirm': '🤔 Please confirm your choice:\n' +
-    `The target path: {0}\n` +
-    `The template you choose is {1}\n` +
-    `The plugin name is {2}\n` +
-    'Confirm?',
+  'create.choices.confirm': '🤔 Please confirm your choice:\n'
+  + 'The target path: {0}\n'
+  + 'The template you choose is {1}\n'
+  + 'The plugin name is {2}\n'
+  + 'Confirm?',
 
   'create.success': '🎉 Successfully created a new plugin',
 
@@ -21,5 +21,5 @@ export default {
   'bundle.success.css': '🎉 CSS bundle generated successfully',
   'bundle.success.js': '🎉 JS bundle generated successfully',
 
-  'error.exit': 'Goodbye 👋'
+  'error.exit': 'Goodbye 👋',
 }

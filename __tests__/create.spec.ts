@@ -36,7 +36,7 @@ describe('createProject', () => {
     expect(traverseDirectory).toHaveBeenCalledWith(toDir, {
       GITIGNORE: '.gitignore',
       PROJECT_NAME: projectName,
-      PROJECT_UPPER_NAME: 'MyProject'
+      PROJECT_UPPER_NAME: 'MyProject',
     })
   })
 })

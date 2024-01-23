@@ -1,14 +1,17 @@
+import process from 'node:process'
 import { resolve } from 'node:path'
+
 import fs from 'fs-extra'
-import { input, confirm, select } from '@inquirer/prompts'
+import { confirm, input, select } from '@inquirer/prompts'
 import { consola } from 'consola'
 import { colors } from 'consola/utils'
-import { CliModeType, ICliOptions, ITemplateData } from '../types'
+import type { ICliOptions, ITemplateData } from '../types'
+import { CliModeType } from '../types'
 import { traverseDirectory } from '../utils/convert'
 import { __dirname } from '../utils/path'
 import { t } from '../i18n'
 
-function covertToPascalCase (str: string) {
+function covertToPascalCase(str: string) {
   return str
     .replace(/\b\w/g, (match) => {
       return match.toUpperCase()
@@ -20,7 +23,7 @@ export function createProject(fromDir: string, toDir: string, projectName: strin
   const data: ITemplateData = {
     GITIGNORE: '.gitignore',
     PROJECT_NAME: projectName,
-    PROJECT_UPPER_NAME: covertToPascalCase(projectName)
+    PROJECT_UPPER_NAME: covertToPascalCase(projectName),
   }
 
   fs.copySync(fromDir, toDir, { overwrite: true })
@@ -28,7 +31,7 @@ export function createProject(fromDir: string, toDir: string, projectName: strin
   traverseDirectory(toDir, data)
 }
 
-export async function create (options: ICliOptions) {
+export async function create(options: ICliOptions) {
   // If the mode is not one of the ModeType values, throw an error
   if (options.mode && !Object.values(CliModeType).includes(options.mode)) {
     throw new Error('Invalid argument: mode')
@@ -43,14 +46,14 @@ export async function create (options: ICliOptions) {
     const answer = {
       path: await input({
         message: t('create.choices.path'),
-        default: process.cwd()
+        default: process.cwd(),
       }),
       template: await select({
         message: t('create.choices.template'),
-        choices: templates.map((template) => ({
+        choices: templates.map(template => ({
           value: template,
-          required: true
-        }))
+          required: true,
+        })),
       }),
       projectName: await input({
         message: t('create.choices.projectName'),
@@ -60,15 +63,15 @@ export async function create (options: ICliOptions) {
           }
 
           return true
-        }
-      })
+        },
+      }),
     }
-  
+
     const { path, template, projectName } = answer
-  
+
     await confirm({
       message: t('create.choices.confirm', colors.cyan(path), colors.cyan(template), colors.cyan(projectName)),
-      default: true
+      default: true,
     })
 
     const fromDir = resolve(templatesPath, template)
@@ -77,7 +80,7 @@ export async function create (options: ICliOptions) {
     if (fs.existsSync(path)) {
       throw new Error(`❌ The path ${colors.yellow(path)} already exists`)
     }
-  
+
     createProject(fromDir, path, projectName)
 
     consola.success(t('create.success'))

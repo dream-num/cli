@@ -1,4 +1,3 @@
-
 import { osLocaleSync } from 'os-locale'
 import enUS from './en-US'
 import zhCN from './zh-CN'
@@ -8,21 +7,21 @@ const DEFAULT_LOCALE = 'en-US'
 
 const locales: Record<string, Record<string, string>> = {
   'en-US': enUS,
-  'zh-CN': zhCN
+  'zh-CN': zhCN,
 }
 
 class Locale {
   locale = osLocaleSync()
 
-  constructor (locale?: string) {
+  constructor(locale?: string) {
     this.setLang(locale ?? osLocaleSync())
   }
 
-  setLang (locale: string) {
+  setLang(locale: string) {
     this.locale = locale
   }
 
-  getLang () {
+  getLang() {
     return this.locale
   }
 }
@@ -36,7 +35,7 @@ export const localeInstance = new Locale()
  * @example
  * t('cli.feature.message')
  */
-export function t (key: string, ...args: string[]) {
+export function t(key: string, ...args: string[]) {
   const locale = localeInstance.getLang()
 
   let result = ''

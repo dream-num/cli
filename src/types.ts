@@ -1,6 +1,6 @@
 export enum CliModeType {
   NORMAL = 'normal',
-  UNIVER = 'univer'
+  UNIVER = 'univer',
 }
 
 export interface ICliOptions {

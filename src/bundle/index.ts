@@ -1,12 +1,13 @@
+import process from 'node:process'
 import path from 'node:path'
-import { createRequire } from 'node:module';
+import { createRequire } from 'node:module'
 import fs from 'fs-extra'
-import { input, confirm } from '@inquirer/prompts'
+import { confirm, input } from '@inquirer/prompts'
 import consola from 'consola'
-import { ICliOptions } from '../types'
+import type { ICliOptions } from '../types'
 import { t } from '../i18n'
 
-async function getPackagePath (name: string) {
+async function getPackagePath(name: string) {
   const require = createRequire(import.meta.url)
 
   return require.resolve(name)
@@ -46,21 +47,21 @@ const clsxUMD = path.resolve(await getPackagePath('clsx'), '../clsx.min.js')
 const rediUMD = path.resolve(await getPackagePath('@wendellhu/redi'), '../../dist/redi.js')
 const rediReactBindingsUMD = path.resolve(await getPackagePath('@wendellhu/redi'), '../../dist/react-bindings.js')
 
-export async function bundle (options: ICliOptions) {
+export async function bundle(_options: ICliOptions) {
   try {
     const answer = {
       outputPath: await input({
         message: t('bundle.choices.path'),
-        default: process.cwd()
+        default: process.cwd(),
       }),
       react: await confirm({
         message: t('bundle.choices.react'),
-        default: false
+        default: false,
       }),
       rxjs: await confirm({
         message: t('bundle.choices.rxjs'),
-        default: false
-      })
+        default: false,
+      }),
     }
 
     const { outputPath, react, rxjs } = answer

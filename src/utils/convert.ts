@@ -1,9 +1,10 @@
-import fs from 'fs-extra'
 import { join } from 'node:path'
+
+import fs from 'fs-extra'
 import ejs from 'ejs'
 import type { ITemplateData } from '../types'
 
-export function traverseDirectory (dir: string, data: ITemplateData) {
+export function traverseDirectory(dir: string, data: ITemplateData) {
   const files = fs.readdirSync(dir)
 
   for (const file of files) {

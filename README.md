@@ -61,7 +61,7 @@ node dist/index.js
   ```sh
   pnpm create @univerjs/cli@latest --mode univer
   ```
-  
+
   ## Release & Publish
 
   ```sh

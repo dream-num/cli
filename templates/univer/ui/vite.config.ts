@@ -1,4 +1,4 @@
-import { resolve } from 'path';
+import { resolve } from 'node:path';
 import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
@@ -8,7 +8,7 @@ import { name } from './package.json';
 const libName = name
     .replace('@univerjs/', 'univer-')
     .split('-')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
     .join('');
 
 export default defineConfig(({ mode }) => ({
@@ -33,7 +33,7 @@ export default defineConfig(({ mode }) => ({
         lib: {
             entry: resolve(__dirname, 'src/index.ts'),
             name: libName,
-            fileName: (format) => `${format}/index.js`,
+            fileName: format => `${format}/index.js`,
             formats: ['es', 'umd', 'cjs'],
         },
         rollupOptions: {
@@ -45,7 +45,7 @@ export default defineConfig(({ mode }) => ({
                 '@wendellhu/redi/react-bindings',
                 'clsx',
                 'react',
-                'rxjs'
+                'rxjs',
             ],
             output: {
                 assetFileNames: 'index.css',
@@ -55,9 +55,9 @@ export default defineConfig(({ mode }) => ({
                     '@univerjs/ui': 'UniverUi',
                     '@wendellhu/redi': '@wendellhu/redi',
                     '@wendellhu/redi/react-bindings': '@wendellhu/redi/react-bindings',
-                    clsx: 'clsx',
-                    react: 'React',
-                    rxjs: 'rxjs',
+                    'clsx': 'clsx',
+                    'react': 'React',
+                    'rxjs': 'rxjs',
                 },
             },
         },

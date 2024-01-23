@@ -1,3 +1,4 @@
+import process from 'node:process'
 import { Command, Option } from 'commander'
 import { cli } from './cli'
 

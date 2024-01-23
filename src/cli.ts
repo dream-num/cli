@@ -1,11 +1,12 @@
 import { select } from '@inquirer/prompts'
 import { consola } from 'consola'
-import { t, localeInstance } from './i18n'
+import { localeInstance, t } from './i18n'
 import { create } from './create'
 import { bundle } from './bundle'
-import { CliModeType, ICliOptions } from './types'
+import type { ICliOptions } from './types'
+import { CliModeType } from './types'
 
-export async function cli (options: ICliOptions) {
+export async function cli(options: ICliOptions) {
   try {
     // If the mode is not one of the ModeType values, throw an error
     if (options.mode && !Object.values(CliModeType).includes(options.mode)) {
@@ -21,11 +22,11 @@ export async function cli (options: ICliOptions) {
       message: t('cli.feature.message'),
       choices: [{
         name: t('cli.feature.choices.create'),
-        value: create
+        value: create,
       }, {
         name: t('cli.feature.choices.bundle'),
-        value: bundle
-      }]
+        value: bundle,
+      }],
     })
 
     feature({ mode })
