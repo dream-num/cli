@@ -12,8 +12,6 @@ logs
 dist/
 *.tsbuildinfo
 
-# Visual Studio Code
-.vscode/
 .settings/
 
 # OS generated files
