@@ -38,6 +38,16 @@ const pakcages = [{
 }, {
   name: '@univerjs/sheets-numfmt',
   style: true,
+}, {
+  name: '@univerjs/sheets-zen-editor',
+  style: true,
+}, {
+  name: '@univerjs/network',
+}, {
+  name: '@univerjs/rpc',
+}, {
+  name: '@univerjs/uniscript',
+  style: true,
 }]
 
 const reactUMD = path.resolve(await getPackagePath('react'), '../umd/react.production.min.js')

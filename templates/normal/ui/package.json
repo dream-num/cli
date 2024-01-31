@@ -44,15 +44,7 @@
         "build": "tsc && vite build"
     },
     "dependencies": {
-        "@univerjs/core": "*",
-        "@univerjs/design": "*",
-        "@univerjs/icons": "^0.1.26",
-        "@univerjs/ui": "*",
-        "@wendellhu/redi": "^0.12.13",
-        "clsx": "^2.1.0",
-        "react": "^18.2.0",
-        "rxjs": "^7.8.1"
-    },
+        "@univerjs/icons": "^0.1.26"    },
     "devDependencies": {
         "@univerjs/core": "*",
         "@univerjs/design": "*",
@@ -71,8 +63,12 @@
         "@univerjs/uniscript": "*",
         "@vitejs/plugin-react": "^4.2.1",
         "@vitest/coverage-istanbul": "^1.2.1",
+        "@wendellhu/redi": "^0.12.13",
+        "clsx": "^2.1.0",
         "happy-dom": "^13.0.0",
         "less": "^4.2.0",
+        "react": "^18.2.0",
+        "rxjs": "^7.8.1",
         "typescript": "^5.3.3",
         "vite": "^5.0.11",
         "vite-plugin-dts": "^3.7.1",
