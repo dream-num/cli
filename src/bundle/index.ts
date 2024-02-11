@@ -46,6 +46,8 @@ const pakcages = [{
 }, {
   name: '@univerjs/rpc',
 }, {
+  name: '@univerjs/facade',
+}, {
   name: '@univerjs/uniscript',
   style: true,
 }]
