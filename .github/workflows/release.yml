@@ -79,47 +79,8 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-  release-verdaccio:
-    needs: [prepare]
-    if: github.repository == 'dream-num/cli'
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.ref_name }}
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
-          run_install: false
-
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-          registry-url: ${{ secrets.VERDACCIO_URL }}
-          scope: '@univerjs'
-
-      - name: 🚚 Install dependencies and build
-        run: |
-          pnpm install
-          pnpm run build
-
-      - name: 🐙 Publish
-        run: |
-          if [[ ${{ needs.prepare.outputs.release_type }} == "alpha" ]]; then
-              pnpm publish --access public --tag ${{ needs.prepare.outputs.release_type }} -r --no-git-checks
-          else
-              pnpm publish --access public -r --no-git-checks
-          fi
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.VERDACCIO_TOKEN }}
-
   notify:
-    needs: [release-npm, release-verdaccio]
+    needs: [release-npm]
     runs-on: ubuntu-latest
 
     steps:
