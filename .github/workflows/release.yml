@@ -1,0 +1,137 @@
+name: 🍰 Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+      - 'v*.*.*-alpha.*'
+      - 'v*.*.*-beta.*'
+      - 'v*.*.*-rc.*'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+
+    outputs:
+      release_type: ${{ steps.release-type.outputs.value }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Setup Node.js
+        uses: ./.github/actions/setup-node
+
+      - name: 🚚 Get release type
+        id: release-type
+        run: |
+          if [[ ${{ github.ref_name }} =~ -(alpha)\. ]]; then
+              extracted_type="${BASH_REMATCH[1]}"
+              echo "value=$extracted_type" >> $GITHUB_OUTPUT
+          fi
+
+  release-npm:
+    needs: [prepare]
+    if: github.repository == 'dream-num/cli'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          registry-url: https://registry.npmjs.org
+
+      - name: 🚚 Install dependencies and build
+        run: |
+          pnpm install
+          pnpm run build
+
+      - name: 🐙 Publish
+        run: |
+          if [[ ${{ needs.prepare.outputs.release_type }} == "alpha" ]]; then
+              pnpm publish --access public --tag ${{ needs.prepare.outputs.release_type }} -r
+          else
+              pnpm publish --access public -r
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  release-verdaccio:
+    needs: [prepare]
+    if: github.repository == 'dream-num/cli'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          registry-url: ${{ secrets.VERDACCIO_URL }}
+          scope: '@univerjs'
+
+      - name: 🚚 Install dependencies and build
+        run: |
+          pnpm install
+          pnpm run build
+
+      - name: 🐙 Publish
+        run: |
+          if [[ ${{ needs.prepare.outputs.release_type }} == "alpha" ]]; then
+              pnpm publish --access public --tag ${{ needs.prepare.outputs.release_type }} -r
+          else
+              pnpm publish --access public -r
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.VERDACCIO_TOKEN }}
+
+  notify:
+    needs: [release-npm, release-verdaccio]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Invoke deployment hook
+        uses: distributhor/workflow-webhook@v3
+        with:
+          webhook_url: ${{ secrets.WEBHOOK_URL }}
+          data: >
+            {
+                "type": "release",
+                "version": "v${{ github.ref_name }}",
+                "workflow": {
+                    "id": "${{ github.run_id }}"
+                },
+                "preview": {
+                }
+            }

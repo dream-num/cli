@@ -8,7 +8,6 @@ import { colors } from 'consola/utils'
 import type { ICliOptions, ITemplateData } from '../types'
 import { CliModeType } from '../types'
 import { traverseDirectory } from '../utils/convert'
-import { __dirname } from '../utils/path'
 import { t } from '../i18n'
 
 function covertToPascalCase(str: string) {
