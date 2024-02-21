@@ -1,5 +1,12 @@
 
 
+## [0.5.2](https://github.com/dream-num/cli/compare/v0.5.1...v0.5.2) (2024-02-21)
+
+
+### Features
+
+* update template ([6c4f010](https://github.com/dream-num/cli/commit/6c4f0103e7e4e435720b80b41bdad4e164073e98))
+
 ## [0.5.1](https://github.com/dream-num/cli/compare/0.5.0...v0.5.1) (2024-02-19)
 
 
