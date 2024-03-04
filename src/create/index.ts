@@ -22,8 +22,8 @@ function covertToPascalCase(str: string) {
 export function createProject(fromDir: string, toDir: string, projectName: string, projectVersion: string): void {
   const data: ITemplateData = {
     GITIGNORE: '.gitignore',
-    PROJECT_NAME: projectVersion,
-    PROJECT_VERSION: '0.0.1',
+    PROJECT_NAME: projectName,
+    PROJECT_VERSION: projectVersion,
     PROJECT_UPPER_NAME: covertToPascalCase(projectName),
   }
 
