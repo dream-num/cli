@@ -38,7 +38,7 @@ jobs:
       - name: 🚚 Install dependencies and build
         run: |
           pnpm install
-          pnpm run build
+          pnpm build
 
       - name: 🐙 Publish
         run: |
