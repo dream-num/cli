@@ -1,5 +1,12 @@
 
 
+## [0.6.1](https://github.com/dream-num/cli/compare/v0.6.0...v0.6.1) (2024-03-04)
+
+
+### Bug Fixes
+
+* project version and name in `createProject` ([baa2eba](https://github.com/dream-num/cli/commit/baa2eba9058ecfae7e45dfd28fe5335bdf525ef4))
+
 # [0.6.0](https://github.com/dream-num/cli/compare/v0.5.3...v0.6.0) (2024-03-04)
 
 
