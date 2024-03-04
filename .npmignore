@@ -1,6 +1,9 @@
-./src
-./tsconfig.json
-./.release-it.json
-./esbuild.config.mjs
-./__tests__
-./coverage
+.github
+.vscode
+coverage
+src
+.release-it.json
+CHANGELOG.md
+esbuild.config.mjs
+eslint.config.json
+tsconfig.json
