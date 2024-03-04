@@ -5,10 +5,11 @@ import fs from 'fs-extra'
 import { confirm, input, select } from '@inquirer/prompts'
 import { consola } from 'consola'
 import { colors } from 'consola/utils'
-import type { ICliOptions, ITemplateData } from '../types'
-import { CliModeType } from '../types'
+import type { ITemplateData } from '../types'
 import { traverseDirectory } from '../utils/convert'
+import { __dirname } from '../utils/path'
 import { t } from '../i18n'
+import { isGitRepository } from '../utils/git'
 
 function covertToPascalCase(str: string) {
   return str
@@ -18,10 +19,11 @@ function covertToPascalCase(str: string) {
     .replace(/-/g, '')
 }
 
-export function createProject(fromDir: string, toDir: string, projectName: string): void {
+export function createProject(fromDir: string, toDir: string, projectName: string, projectVersion: string): void {
   const data: ITemplateData = {
     GITIGNORE: '.gitignore',
-    PROJECT_NAME: projectName,
+    PROJECT_NAME: projectVersion,
+    PROJECT_VERSION: '0.0.1',
     PROJECT_UPPER_NAME: covertToPascalCase(projectName),
   }
 
@@ -30,15 +32,16 @@ export function createProject(fromDir: string, toDir: string, projectName: strin
   traverseDirectory(toDir, data)
 }
 
-export async function create(options: ICliOptions) {
-  // If the mode is not one of the ModeType values, throw an error
-  if (options.mode && !Object.values(CliModeType).includes(options.mode)) {
-    throw new Error('Invalid argument: mode')
+export async function create() {
+  enum TemplateTypes {
+    normal = 'normal',
+    univer = 'univer',
   }
 
-  const mode = options.mode ?? CliModeType.NORMAL
+  const isUniverRepo = await isGitRepository(process.cwd())
+  const type = isUniverRepo ? TemplateTypes.univer : TemplateTypes.normal
 
-  const templatesPath = resolve(__dirname, '../templates', mode)
+  const templatesPath = resolve(__dirname, '../templates', type)
   const templates = fs.readdirSync(templatesPath)
 
   try {
@@ -64,9 +67,13 @@ export async function create(options: ICliOptions) {
           return true
         },
       }),
+      projectVersion: await input({
+        message: t('create.choices.projectVersion'),
+        default: '0.0.1',
+      }),
     }
 
-    const { path, template, projectName } = answer
+    const { path, template, projectName, projectVersion } = answer
 
     await confirm({
       message: t('create.choices.confirm', colors.cyan(path), colors.cyan(template), colors.cyan(projectName)),
@@ -80,7 +87,7 @@ export async function create(options: ICliOptions) {
       throw new Error(`❌ The path ${colors.yellow(path)} already exists`)
     }
 
-    createProject(fromDir, path, projectName)
+    createProject(fromDir, path, projectName, projectVersion)
 
     consola.success(t('create.success'))
   } catch (error) {

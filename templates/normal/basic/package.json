@@ -1,6 +1,6 @@
 {
     "name": "<%= PROJECT_NAME %>",
-    "version": "",
+    "version": "<%= PROJECT_VERSION %>",
     "description": "",
     "keywords": [],
     "author": "",

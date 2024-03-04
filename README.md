@@ -46,25 +46,3 @@ test, create `filter` plugin
 ```sh
 node dist/index.js
 ```
-
----
-
-<details>
-  <summary>Internal use only</summary>
-
-  <br />
-
-  > This section is for internal use only. You don't need to read it.
-
-  ## Usage
-
-  ```sh
-  pnpm create @univerjs/cli@latest --mode univer
-  ```
-
-  ## Release & Publish
-
-  ```sh
-  npm run release
-  ```
-</details>
