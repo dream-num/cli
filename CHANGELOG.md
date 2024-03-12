@@ -1,5 +1,7 @@
 
 
+## [0.6.2](https://github.com/dream-num/cli/compare/v0.6.1...v0.6.2) (2024-03-12)
+
 ## [0.6.1](https://github.com/dream-num/cli/compare/v0.6.0...v0.6.1) (2024-03-04)
 
 
