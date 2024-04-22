@@ -21,7 +21,7 @@
     "release": "release-it"
   },
   "dependencies": {
-    "@inquirer/prompts": "^4.1.0",
+    "@inquirer/prompts": "^5.0.1",
     "@univerjs/core": "^0.1.2",
     "@univerjs/design": "^0.1.2",
     "@univerjs/docs": "^0.1.2",
