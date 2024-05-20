@@ -1,5 +1,17 @@
 
 
+## [0.6.3](https://github.com/dream-num/cli/compare/v0.6.2...v0.6.3) (2024-05-20)
+
+
+### Bug Fixes
+
+* fix lockfile ([58c2143](https://github.com/dream-num/cli/commit/58c21432b98e07c6ab725a9fa8235a336b19ca6b))
+
+
+### Features
+
+* update template ([e645ab7](https://github.com/dream-num/cli/commit/e645ab798619d85e1c3164b23caf4157c9b0731c))
+
 ## [0.6.2](https://github.com/dream-num/cli/compare/v0.6.1...v0.6.2) (2024-03-12)
 
 ## [0.6.1](https://github.com/dream-num/cli/compare/v0.6.0...v0.6.1) (2024-03-04)
