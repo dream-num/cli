@@ -29,11 +29,10 @@ export default defineConfig(({ mode }) => ({
             formats: ['es', 'umd', 'cjs'],
         },
         rollupOptions: {
-            external: ['@univerjs/core', '@wendellhu/redi', 'rxjs'],
+            external: ['@univerjs/core', 'rxjs'],
             output: {
                 globals: {
                     '@univerjs/core': 'UniverCore',
-                    '@wendellhu/redi': '@wendellhu/redi',
                     rxjs: 'rxjs',
                 },
             },

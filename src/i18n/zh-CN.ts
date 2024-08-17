@@ -3,7 +3,6 @@ import type enUS from './en-US'
 const locale: typeof enUS = {
   'cli.feature.message': '👋 嘿，今天想做什么？',
   'cli.feature.choices.create': '🔌 创建一个新的 univer 插件',
-  'cli.feature.choices.bundle': '📦 构建你自己的 UMD 包',
 
   'create.choices.path': '📝 请输入要创建新插件的路径',
   'create.choices.template': '📦 请选择模板',
@@ -16,12 +15,6 @@ const locale: typeof enUS = {
   + '插件名称是 {2}\n'
   + '确认？',
   'create.success': '🎉 成功创建一个新插件',
-
-  'bundle.choices.path': '📝 请输入输出路径',
-  'bundle.choices.react': '🏗️ 你的项目中已经使用了 React?',
-  'bundle.choices.rxjs': '🚛 你的项目中已经使用了 RxJS?',
-  'bundle.success.css': '🎉 CSS 包生成成功',
-  'bundle.success.js': '🎉 JS 包生成成功',
 
   'error.exit': '再见 👋',
 }

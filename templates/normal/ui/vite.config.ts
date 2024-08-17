@@ -41,8 +41,6 @@ export default defineConfig(({ mode }) => ({
                 '@univerjs/core',
                 '@univerjs/design',
                 '@univerjs/ui',
-                '@wendellhu/redi',
-                '@wendellhu/redi/react-bindings',
                 'clsx',
                 'react',
                 'rxjs'
@@ -53,8 +51,6 @@ export default defineConfig(({ mode }) => ({
                     '@univerjs/core': 'UniverCore',
                     '@univerjs/design': 'UniverDesign',
                     '@univerjs/ui': 'UniverUi',
-                    '@wendellhu/redi': '@wendellhu/redi',
-                    '@wendellhu/redi/react-bindings': '@wendellhu/redi/react-bindings',
                     clsx: 'clsx',
                     react: 'React',
                     rxjs: 'rxjs',
