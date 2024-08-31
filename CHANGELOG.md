@@ -1,5 +1,12 @@
 
 
+## [0.6.5](https://github.com/dream-num/cli/compare/v0.6.4...v0.6.5) (2024-08-31)
+
+
+### Bug Fixes
+
+* fix npmignore filtering ([ee06a7c](https://github.com/dream-num/cli/commit/ee06a7c6944ae8f5460c8a829725219e280a0796))
+
 ## [0.6.4](https://github.com/dream-num/cli/compare/v0.6.3...v0.6.4) (2024-08-17)
 
 
