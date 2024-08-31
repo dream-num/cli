@@ -1,9 +1,9 @@
-.github
-.vscode
-coverage
-src
-.release-it.json
+./.github
+./.vscode
+./coverage
+./src
+./.release-it.json
 CHANGELOG.md
-esbuild.config.mjs
-eslint.config.json
-tsconfig.json
+./esbuild.config.mjs
+./eslint.config.json
+./tsconfig.json
